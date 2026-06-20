@@ -4,7 +4,11 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.math.BigDecimal
 import java.net.URI
+import java.net.URLDecoder
 import java.net.URLEncoder
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 enum class AdPlacement {
@@ -55,6 +59,26 @@ data class NetworkExitStatus(
     val captivePortalReachable: Boolean?,
 )
 
+data class SupportRecord(
+    val id: String,
+    val amount: String,
+    val paidAt: String,
+    val channel: String,
+    val payerName: String,
+    val payerMessage: String,
+)
+
+data class PaymentProofVerification(
+    val valid: Boolean,
+    val appId: String,
+    val proofKey: String,
+    val clientRef: String,
+    val amount: String,
+    val status: String,
+    val paidAt: String,
+    val channel: String,
+)
+
 data class ConfigBackupSnapshot(
     val id: String,
     val name: String,
@@ -77,7 +101,10 @@ data class ApnDraftConfig(
 )
 
 object SupportRules {
+    const val AD_FREE_PROOF_KEY = "support_unlock"
+    private val paymentProofPattern = Regex("""proof_[0-9a-f]{64}""")
     private val supportAmountPattern = Regex("""(?:0|[1-9]\d{0,5})(?:\.\d{1,2})?""")
+    private val adFreeAmount = BigDecimal("100.00")
 
     fun normalizeBaseUrl(value: String): String? {
         return value.trim().trimEnd('/').takeIf { it.isNotBlank() }
@@ -139,6 +166,57 @@ object SupportRules {
             path == "/checkout/close"
     }
 
+    fun extractDodopayPaymentProof(value: String): String? {
+        val uri = runCatching { URI(value.trim()) }.getOrNull() ?: return null
+        if (!isDodopayCheckoutCloseUrl(value)) return null
+        val proof = findParamValue(uri.fragment, "payment_proof")
+            ?: findParamValue(uri.query, "payment_proof")
+            ?: return null
+        return proof.takeIf { paymentProofPattern.matches(it) }
+    }
+
+    fun resolveUrlOrigin(value: String): String? {
+        val uri = runCatching { URI(value.trim()) }.getOrNull() ?: return null
+        val scheme = uri.scheme?.lowercase(Locale.US).orEmpty()
+        val authority = uri.rawAuthority.orEmpty()
+        if (scheme !in setOf("http", "https") || authority.isBlank()) return null
+        return "$scheme://$authority"
+    }
+
+    fun extractSupportAppId(value: String): String? {
+        val uri = runCatching { URI(value.trim()) }.getOrNull() ?: return null
+        val segments = uri.path.orEmpty().trim('/').split('/')
+        if (segments.size < 2 || segments[0] != "support") return null
+        return segments[1].takeIf { it.isNotBlank() && !it.contains('{') && !it.contains('}') }
+    }
+
+    fun parsePaymentProofVerification(json: JSONObject): PaymentProofVerification {
+        return PaymentProofVerification(
+            valid = json.optBoolean("valid", false),
+            appId = json.optString("app_id"),
+            proofKey = json.optString("proof_key"),
+            clientRef = json.optString("client_ref"),
+            amount = json.optString("amount"),
+            status = json.optString("status"),
+            paidAt = json.optString("paid_at"),
+            channel = json.optString("channel"),
+        )
+    }
+
+    fun isAdFreePaymentProof(
+        proof: PaymentProofVerification,
+        expectedClientRef: String,
+        expectedAppId: String?,
+    ): Boolean {
+        if (!proof.valid) return false
+        if (expectedAppId.isNullOrBlank() || proof.appId != expectedAppId) return false
+        if (proof.proofKey != AD_FREE_PROOF_KEY) return false
+        if (proof.clientRef != expectedClientRef) return false
+        if (proof.status != "paid") return false
+        val amount = runCatching { BigDecimal(proof.amount) }.getOrNull() ?: return false
+        return amount >= adFreeAmount
+    }
+
     fun buildBusinessIntentParams(
         sourceName: String,
         sourceVersion: String,
@@ -170,8 +248,69 @@ object SupportRules {
         }.filter { it.enabled && (it.title.isNotBlank() || it.imageUrl.isNotBlank()) }
     }
 
+    fun parseSupportRecords(json: JSONObject): List<SupportRecord> {
+        val items = json.optJSONArray("items") ?: JSONArray()
+        return buildList {
+            for (index in 0 until items.length()) {
+                val item = items.optJSONObject(index) ?: continue
+                val id = item.optString("record_id").ifBlank { "record_$index" }
+                val amount = item.optString("amount")
+                val paidAt = item.optString("paid_at")
+                if (amount.isBlank() || paidAt.isBlank()) continue
+                add(
+                    SupportRecord(
+                        id = id,
+                        amount = amount,
+                        paidAt = paidAt,
+                        channel = item.optString("channel"),
+                        payerName = item.optString("payer_name"),
+                        payerMessage = item.optString("payer_message"),
+                    )
+                )
+            }
+        }
+    }
+
+    fun formatIsoDateTimeForDisplay(
+        value: String,
+        zoneId: ZoneId = ZoneId.systemDefault(),
+        locale: Locale = Locale.getDefault(),
+    ): String {
+        return runCatching {
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", locale)
+                .withZone(zoneId)
+                .format(Instant.parse(value))
+        }.getOrElse {
+            value.replace('T', ' ').take(16)
+        }
+    }
+
     private fun encodeQueryValue(value: String): String {
         return URLEncoder.encode(value, Charsets.UTF_8.name())
+    }
+
+    private fun decodeQueryValue(value: String): String {
+        return URLDecoder.decode(value, Charsets.UTF_8.name())
+    }
+
+    private fun findParamValue(rawParams: String?, name: String): String? {
+        if (rawParams.isNullOrBlank()) return null
+        return rawParams
+            .split('&')
+            .asSequence()
+            .mapNotNull { part ->
+                val separatorIndex = part.indexOf('=')
+                if (separatorIndex <= 0) return@mapNotNull null
+                val key = runCatching {
+                    decodeQueryValue(part.substring(0, separatorIndex))
+                }.getOrNull() ?: return@mapNotNull null
+                val value = runCatching {
+                    decodeQueryValue(part.substring(separatorIndex + 1))
+                }.getOrNull() ?: return@mapNotNull null
+                key to value
+            }
+            .firstOrNull { it.first == name }
+            ?.second
     }
 
     private fun parseCommercialAdItem(item: JSONObject, index: Int): CommercialAd? {

@@ -196,8 +196,17 @@
     <string name="support_payment_subject">Carrier IMS Project Support</string>
     <string name="support_payment_button">Pay</string>
     <string name="support_payment_return_app">Return to App</string>
+    <string name="support_ad_free_hint">Donate ¥100 or more once to remove ads.</string>
+    <string name="support_ad_free_enabled">Ads removed on this device.</string>
+    <string name="support_ad_free_verified">Ads removed.</string>
+    <string name="support_ad_free_verify_failed">Could not verify ad-free status.</string>
     <string name="support_records_title">Donation Records</string>
     <string name="support_records_dodopay_note">Support messages and payment records are kept in DoDoPay. This app does not store payment data.</string>
+    <string name="support_records_loading">Loading records...</string>
+    <string name="support_records_load_failed">Could not load records. Try again later.</string>
+    <string name="support_records_empty">No donations yet.</string>
+    <string name="support_records_anonymous">Anonymous</string>
+    <string name="support_records_no_message">No message</string>
     <string name="business_contact_title">Business Contact</string>
     <string name="business_contact_desc">Leave your contact and cooperation request.</string>
     <string name="business_contact_default">Business contact: GitHub Issue</string>

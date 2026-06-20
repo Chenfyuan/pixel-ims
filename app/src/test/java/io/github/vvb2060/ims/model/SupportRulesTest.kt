@@ -1,6 +1,7 @@
 package io.github.vvb2060.ims.model
 
 import org.json.JSONObject
+import java.time.ZoneId
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -67,12 +68,105 @@ class SupportRulesTest {
     }
 
     @Test
+    fun dodopayPublicFeedParsesDisplayOnlySupportRecords() {
+        val records = SupportRules.parseSupportRecords(
+            JSONObject(
+                """
+                {
+                  "items": [
+                    {
+                      "record_id": "rec_123",
+                      "order_id": "should_not_be_used",
+                      "merchant_order_id": "should_not_be_used",
+                      "amount": "9.90",
+                      "paid_at": "2026-06-19T21:22:50.550Z",
+                      "channel": "WECHAT",
+                      "payer_name": "小马哥",
+                      "payer_contact": "tg:@hidden",
+                      "payer_message": "能否完善支持双sim卡的开关"
+                    }
+                  ]
+                }
+                """.trimIndent()
+            )
+        )
+
+        val record = records.single()
+        assertEquals("rec_123", record.id)
+        assertEquals("9.90", record.amount)
+        assertEquals("2026-06-19T21:22:50.550Z", record.paidAt)
+        assertEquals("WECHAT", record.channel)
+        assertEquals("小马哥", record.payerName)
+        assertEquals("能否完善支持双sim卡的开关", record.payerMessage)
+    }
+
+    @Test
+    fun supportRecordTimeUsesDeviceTimeZone() {
+        assertEquals(
+            "2026-06-20 05:22",
+            SupportRules.formatIsoDateTimeForDisplay(
+                value = "2026-06-19T21:22:50.550Z",
+                zoneId = ZoneId.of("Asia/Shanghai"),
+            )
+        )
+    }
+
+    @Test
     fun onlyDodopayCheckoutCloseUrlClosesPaymentDialog() {
         assertTrue(SupportRules.isDodopayCheckoutCloseUrl("https://pay.dodododo.org/checkout/close?order_id=test"))
+        assertTrue(SupportRules.isDodopayCheckoutCloseUrl("https://pay.dodododo.org/checkout/close#payment_proof=proof_${"a".repeat(64)}"))
         assertFalse(SupportRules.isDodopayCheckoutCloseUrl("https://pay.dodododo.org/pay/test"))
         assertFalse(SupportRules.isDodopayCheckoutCloseUrl("http://pay.dodododo.org/checkout/close"))
         assertFalse(SupportRules.isDodopayCheckoutCloseUrl("https://github.com/checkout/close"))
         assertFalse(SupportRules.isDodopayCheckoutCloseUrl("http://localhost:3000/checkout/close"))
+    }
+
+    @Test
+    fun dodopayPaymentProofCanComeFromFragmentOrQuery() {
+        val proof = "proof_${"a".repeat(64)}"
+
+        assertEquals(
+            proof,
+            SupportRules.extractDodopayPaymentProof("https://pay.dodododo.org/checkout/close#payment_proof=$proof")
+        )
+        assertEquals(
+            proof,
+            SupportRules.extractDodopayPaymentProof("https://pay.dodododo.org/checkout/close?payment_proof=$proof")
+        )
+        assertNull(SupportRules.extractDodopayPaymentProof("https://pay.dodododo.org/checkout/close#payment_proof=bad"))
+        assertNull(SupportRules.extractDodopayPaymentProof("https://pay.dodododo.org/checkout/close#payment_proof=%"))
+        assertNull(SupportRules.extractDodopayPaymentProof("https://pay.dodododo.org/checkout/close?payment_proof=%"))
+        assertNull(SupportRules.extractDodopayPaymentProof("https://pay.dodododo.org/pay/test#payment_proof=$proof"))
+    }
+
+    @Test
+    fun validPaymentProofUnlocksAdsOnlyForSameClientAndEnoughAmount() {
+        val proof = PaymentProofVerification(
+            valid = true,
+            appId = "app_test",
+            proofKey = SupportRules.AD_FREE_PROOF_KEY,
+            clientRef = "client_123",
+            amount = "100.00",
+            status = "paid",
+            paidAt = "2026-06-21T00:00:00.000Z",
+            channel = "WECHAT",
+        )
+
+        assertTrue(SupportRules.isAdFreePaymentProof(proof, "client_123", "app_test"))
+        assertFalse(SupportRules.isAdFreePaymentProof(proof.copy(amount = "99.99"), "client_123", "app_test"))
+        assertFalse(SupportRules.isAdFreePaymentProof(proof.copy(clientRef = "client_other"), "client_123", "app_test"))
+        assertFalse(SupportRules.isAdFreePaymentProof(proof.copy(proofKey = "other"), "client_123", "app_test"))
+        assertFalse(SupportRules.isAdFreePaymentProof(proof.copy(appId = "app_other"), "client_123", "app_test"))
+        assertFalse(SupportRules.isAdFreePaymentProof(proof.copy(valid = false), "client_123", "app_test"))
+    }
+
+    @Test
+    fun supportAppIdCanBeExtractedFromPublicSupportUrl() {
+        assertEquals(
+            "app_c5b4614bad018dbd",
+            SupportRules.extractSupportAppId("https://pay.dodododo.org/support/app_c5b4614bad018dbd")
+        )
+        assertNull(SupportRules.extractSupportAppId("https://pay.dodododo.org/pay/order"))
     }
 
     @Test

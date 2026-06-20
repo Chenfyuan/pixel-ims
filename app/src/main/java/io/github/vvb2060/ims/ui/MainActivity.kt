@@ -131,6 +131,7 @@ import io.github.vvb2060.ims.model.ConfigBackupSnapshot
 import io.github.vvb2060.ims.model.NetworkExitStatus
 import io.github.vvb2060.ims.model.ShizukuStatus
 import io.github.vvb2060.ims.model.SimSelection
+import io.github.vvb2060.ims.model.SupportRecord
 import io.github.vvb2060.ims.model.SupportRules
 import io.github.vvb2060.ims.model.SystemInfo
 import io.github.vvb2060.ims.privileged.ImsModifier
@@ -496,9 +497,13 @@ class MainActivity : BaseActivity() {
         var networkExitChecking by remember { mutableStateOf(false) }
         var networkExitStatus by remember { mutableStateOf<NetworkExitStatus?>(null) }
         var networkExitError by remember { mutableStateOf<String?>(null) }
+        var adFreeEnabled by remember { mutableStateOf(viewModel.isAdFreeEnabled()) }
         var commercialAds by remember { mutableStateOf<List<CommercialAd>>(emptyList()) }
         var homeAdToShow by remember { mutableStateOf<CommercialAd?>(null) }
         var supportPaymentUrl by remember { mutableStateOf<String?>(null) }
+        var supportRecords by remember { mutableStateOf<List<SupportRecord>>(emptyList()) }
+        var supportRecordsLoading by remember { mutableStateOf(false) }
+        var supportRecordsError by remember { mutableStateOf<String?>(null) }
         var apnDraft by remember { mutableStateOf<ApnDraftConfig?>(null) }
         var apnDraftSim by remember { mutableStateOf<SimSelection?>(null) }
         var applyingApn by remember { mutableStateOf(false) }
@@ -555,11 +560,24 @@ class MainActivity : BaseActivity() {
         }
         LaunchedEffect(Unit) {
             configBackups = viewModel.loadConfigBackups()
-            commercialAds = viewModel.fetchCommercialAds().getOrDefault(emptyList())
-            homeAdToShow = commercialAds.firstOrNull {
-                it.placement == AdPlacement.HOME_POPUP && viewModel.shouldShowHomeAd(it)
+            if (!adFreeEnabled) {
+                commercialAds = viewModel.fetchCommercialAds().getOrDefault(emptyList())
+                homeAdToShow = commercialAds.firstOrNull {
+                    it.placement == AdPlacement.HOME_POPUP && viewModel.shouldShowHomeAd(it)
+                }
+                homeAdToShow?.let { viewModel.markHomeAdShown(it) }
             }
-            homeAdToShow?.let { viewModel.markHomeAdShown(it) }
+        }
+        LaunchedEffect(selectedTab) {
+            if (selectedTab != MainTab.SUPPORT || !viewModel.isDodopaySupportFeedConfigured()) {
+                return@LaunchedEffect
+            }
+            supportRecordsLoading = true
+            supportRecordsError = null
+            val result = viewModel.fetchSupportRecords()
+            supportRecords = result.getOrDefault(emptyList())
+            supportRecordsError = result.exceptionOrNull()?.message
+            supportRecordsLoading = false
         }
         LaunchedEffect(allSimList) {
             val validSubIds = allSimList.filter { it.subId >= 0 }.map { it.subId }.toSet()
@@ -1304,6 +1322,11 @@ class MainActivity : BaseActivity() {
                 if (selectedTab == MainTab.SUPPORT) {
                     SupportPage(
                         supportPaymentConfigured = viewModel.isDodopaySupportConfigured(),
+                        adFreeEnabled = adFreeEnabled,
+                        supportRecordsConfigured = viewModel.isDodopaySupportFeedConfigured(),
+                        supportRecordsLoading = supportRecordsLoading,
+                        supportRecords = supportRecords,
+                        supportRecordsError = supportRecordsError,
                         onCreateSupportOrder = supportOrder@{ name, message, amount ->
                             val result = viewModel.buildDodopaySupportUrl(name, message, amount)
                             val url = result.getOrNull()
@@ -1325,7 +1348,11 @@ class MainActivity : BaseActivity() {
                         adsConfigured = viewModel.isAdServiceConfigured(),
                         businessIntentConfigured = viewModel.isBusinessIntentConfigured(),
                         businessIntentSubmitting = submittingBusinessIntent,
-                        cooperationAds = commercialAds.filter { it.placement == AdPlacement.COOPERATION_CARD },
+                        cooperationAds = if (adFreeEnabled) {
+                            emptyList()
+                        } else {
+                            commercialAds.filter { it.placement == AdPlacement.COOPERATION_CARD }
+                        },
                         businessContactText = BuildConfig.BUSINESS_CONTACT_TEXT,
                         businessContactUrl = BuildConfig.BUSINESS_CONTACT_URL,
                         onOpenAd = { ad ->
@@ -1362,7 +1389,7 @@ class MainActivity : BaseActivity() {
                 }
                 Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
 
-                homeAdToShow?.let { ad ->
+                if (!adFreeEnabled) homeAdToShow?.let { ad ->
                     CommercialAdDialog(
                         ad = ad,
                         onOpen = {
@@ -1378,7 +1405,32 @@ class MainActivity : BaseActivity() {
                 supportPaymentUrl?.let { url ->
                     SupportPaymentDialog(
                         url = url,
-                        onDismiss = { supportPaymentUrl = null },
+                        onDismiss = { paymentProof ->
+                            supportPaymentUrl = null
+                            if (paymentProof != null) {
+                                scope.launch {
+                                    val result = viewModel.verifyDodopayPaymentProof(paymentProof)
+                                    if (result.getOrDefault(false)) {
+                                        adFreeEnabled = true
+                                        commercialAds = emptyList()
+                                        homeAdToShow = null
+                                        Toast.makeText(context, R.string.support_ad_free_verified, Toast.LENGTH_SHORT).show()
+                                    } else if (result.isFailure) {
+                                        Toast.makeText(context, R.string.support_ad_free_verify_failed, Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            }
+                            if (viewModel.isDodopaySupportFeedConfigured()) {
+                                scope.launch {
+                                    supportRecordsLoading = true
+                                    supportRecordsError = null
+                                    val result = viewModel.fetchSupportRecords()
+                                    supportRecords = result.getOrDefault(emptyList())
+                                    supportRecordsError = result.exceptionOrNull()?.message
+                                    supportRecordsLoading = false
+                                }
+                            }
+                        },
                     )
                 }
                 apnDraft?.let { draft ->
@@ -2219,6 +2271,11 @@ private fun ConfigBackupCard(
 @Composable
 private fun SupportPage(
     supportPaymentConfigured: Boolean,
+    adFreeEnabled: Boolean,
+    supportRecordsConfigured: Boolean,
+    supportRecordsLoading: Boolean,
+    supportRecords: List<SupportRecord>,
+    supportRecordsError: String?,
     onCreateSupportOrder: (String, String, String) -> Unit,
 ) {
     var name by remember { mutableStateOf("") }
@@ -2241,6 +2298,17 @@ private fun SupportPage(
                     color = MaterialTheme.colorScheme.outline,
                 )
             }
+            Text(
+                text = stringResource(
+                    if (adFreeEnabled) {
+                        R.string.support_ad_free_enabled
+                    } else {
+                        R.string.support_ad_free_hint
+                    }
+                ),
+                fontSize = 12.sp,
+                color = MaterialTheme.colorScheme.outline,
+            )
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it.take(24) },
@@ -2287,13 +2355,90 @@ private fun SupportPage(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
             )
-            Text(
-                text = stringResource(R.string.support_records_dodopay_note),
-                fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.outline
-            )
+            when {
+                !supportRecordsConfigured -> {
+                    Text(
+                        text = stringResource(R.string.support_records_dodopay_note),
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
+                supportRecordsLoading -> {
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                    Text(
+                        text = stringResource(R.string.support_records_loading),
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
+                supportRecordsError != null -> {
+                    Text(
+                        text = stringResource(R.string.support_records_load_failed),
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
+                supportRecords.isEmpty() -> {
+                    Text(
+                        text = stringResource(R.string.support_records_empty),
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }
+                else -> {
+                    supportRecords.forEachIndexed { index, record ->
+                        if (index > 0) HorizontalDivider()
+                        SupportRecordRow(record)
+                    }
+                }
+            }
         }
     }
+}
+
+@Composable
+private fun SupportRecordRow(record: SupportRecord) {
+    val name = record.payerName.ifBlank { stringResource(R.string.support_records_anonymous) }
+    val message = record.payerMessage.ifBlank { stringResource(R.string.support_records_no_message) }
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = name,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.weight(1f),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Text(
+                text = "¥${record.amount}",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+            )
+        }
+        Text(
+            text = message,
+            fontSize = 13.sp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+        )
+        Text(
+            text = listOf(formatSupportPaidAt(record.paidAt), record.channel)
+                .filter { it.isNotBlank() }
+                .joinToString(" · "),
+            fontSize = 11.sp,
+            color = MaterialTheme.colorScheme.outline,
+        )
+    }
+}
+
+private fun formatSupportPaidAt(value: String): String {
+    return SupportRules.formatIsoDateTimeForDisplay(value)
 }
 
 @Composable
@@ -2646,12 +2791,12 @@ private fun CommercialAdDialog(
 @Composable
 private fun SupportPaymentDialog(
     url: String,
-    onDismiss: () -> Unit,
+    onDismiss: (String?) -> Unit,
 ) {
     AlertDialog(
         modifier = Modifier.fillMaxWidth(0.96f),
         properties = DialogProperties(usePlatformDefaultWidth = false),
-        onDismissRequest = onDismiss,
+        onDismissRequest = { onDismiss(null) },
         title = { Text(stringResource(R.string.support_payment_page_title)) },
         text = {
             AndroidView(
@@ -2668,7 +2813,7 @@ private fun SupportPaymentDialog(
                             ): Boolean {
                                 val nextUrl = request?.url?.toString().orEmpty()
                                 if (SupportRules.isDodopayCheckoutCloseUrl(nextUrl)) {
-                                    onDismiss()
+                                    onDismiss(SupportRules.extractDodopayPaymentProof(nextUrl))
                                     return true
                                 }
                                 return false
@@ -2686,7 +2831,7 @@ private fun SupportPaymentDialog(
         },
         confirmButton = {},
         dismissButton = {
-            TextButton(onClick = onDismiss) {
+            TextButton(onClick = { onDismiss(null) }) {
                 Text(stringResource(id = android.R.string.cancel))
             }
         },

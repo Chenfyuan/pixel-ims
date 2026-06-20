@@ -29,6 +29,7 @@ import io.github.vvb2060.ims.model.ConfigBackupSnapshot
 import io.github.vvb2060.ims.model.NetworkExitStatus
 import io.github.vvb2060.ims.model.ShizukuStatus
 import io.github.vvb2060.ims.model.SimSelection
+import io.github.vvb2060.ims.model.SupportRecord
 import io.github.vvb2060.ims.model.SupportRules
 import io.github.vvb2060.ims.model.SystemInfo
 import io.github.vvb2060.ims.privileged.ImsModifier
@@ -66,6 +67,8 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         private const val CONFIG_BACKUP_PREFS = "config_backups"
         private const val COUNTRY_MCC_PREF_KEY = "__country_mcc_override__"
         private const val TIKTOK_RANDOM_ISO_PREF_KEY = "__tiktok_random_iso__"
+        private const val SUPPORT_CLIENT_REF_PREF_KEY = "support_client_ref"
+        private const val AD_FREE_PREF_KEY = "ad_free"
         private const val KEY_LAST_BOOT_COUNT = "last_boot_count"
         private const val ISSUE_FAILURE_LOG_FILE = "issue_failure_logs.txt"
         private const val ISSUE_FAILURE_LOG_MAX_LINES = 200
@@ -118,6 +121,8 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
     private val adPrefs = application.getSharedPreferences(AD_PREFS, Context.MODE_PRIVATE)
     private val configBackupPrefs = application.getSharedPreferences(CONFIG_BACKUP_PREFS, Context.MODE_PRIVATE)
     private val dodopaySupportUrlTemplate = BuildConfig.DODOPAY_SUPPORT_URL_TEMPLATE.trim().takeIf { it.isNotBlank() }
+    private val dodopaySupportFeedUrl = BuildConfig.DODOPAY_SUPPORT_FEED_URL.trim().takeIf { it.isNotBlank() }
+    private val dodopaySupportAppId = SupportRules.extractSupportAppId(dodopaySupportUrlTemplate.orEmpty())
     private val adApiBaseUrl = SupportRules.normalizeBaseUrl(BuildConfig.AD_API_BASE_URL)
     private val businessIntentBaseUrl = SupportRules.normalizeBaseUrl(BuildConfig.BUSINESS_INTENT_BASE_URL)
     private val issueFailureLogMutex = Mutex()
@@ -598,6 +603,10 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
 
     fun isDodopaySupportConfigured(): Boolean = dodopaySupportUrlTemplate != null
 
+    fun isDodopaySupportFeedConfigured(): Boolean = dodopaySupportFeedUrl != null
+
+    fun isAdFreeEnabled(): Boolean = runtimePrefs.getBoolean(AD_FREE_PREF_KEY, false)
+
     fun isAdServiceConfigured(): Boolean = adApiBaseUrl != null
 
     fun isBusinessIntentConfigured(): Boolean = businessIntentBaseUrl != null
@@ -639,6 +648,30 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                 SupportRules.parseCommercialAds(fetchJsonObject(baseUrl + PROJECT_PUBLIC_AD_SLOTS_PATH))
             }.getOrDefault(emptyList())
             compatiblePublicAds
+        }
+    }
+
+    suspend fun fetchSupportRecords(): Result<List<SupportRecord>> = withContext(Dispatchers.IO) {
+        runCatching {
+            val url = dodopaySupportFeedUrl ?: return@runCatching emptyList()
+            SupportRules.parseSupportRecords(fetchJsonObject(url))
+        }
+    }
+
+    suspend fun verifyDodopayPaymentProof(paymentProof: String): Result<Boolean> = withContext(Dispatchers.IO) {
+        runCatching {
+            val verifyUrl = buildDodopayPaymentProofUrl(paymentProof)
+                ?: throw IllegalStateException("DoDoPay payment proof is not configured")
+            val verification = SupportRules.parsePaymentProofVerification(fetchJsonObject(verifyUrl))
+            val unlocked = SupportRules.isAdFreePaymentProof(
+                proof = verification,
+                expectedClientRef = getOrCreateSupportClientRef(),
+                expectedAppId = dodopaySupportAppId,
+            )
+            if (unlocked) {
+                runtimePrefs.edit { putBoolean(AD_FREE_PREF_KEY, true) }
+            }
+            unlocked
         }
     }
 
@@ -693,12 +726,27 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                 "button_text" to application.getString(R.string.support_payment_button),
                 "return_mode" to "close",
                 "return_label" to application.getString(R.string.support_payment_return_app),
+                "client_ref" to getOrCreateSupportClientRef(),
+                "proof_key" to SupportRules.AD_FREE_PROOF_KEY,
             ),
             aliases = mapOf(
                 "name" to "payer_name",
                 "message" to "payer_message",
             ),
         )
+    }
+
+    private fun getOrCreateSupportClientRef(): String {
+        val existing = runtimePrefs.getString(SUPPORT_CLIENT_REF_PREF_KEY, "").orEmpty()
+        if (existing.isNotBlank()) return existing
+        val generated = "client_${UUID.randomUUID().toString().replace("-", "")}"
+        runtimePrefs.edit { putString(SUPPORT_CLIENT_REF_PREF_KEY, generated) }
+        return generated
+    }
+
+    private fun buildDodopayPaymentProofUrl(paymentProof: String): String? {
+        val origin = SupportRules.resolveUrlOrigin(dodopaySupportUrlTemplate.orEmpty()) ?: return null
+        return "$origin/api/public/payment-proofs/$paymentProof"
     }
 
     suspend fun submitBusinessIntent(

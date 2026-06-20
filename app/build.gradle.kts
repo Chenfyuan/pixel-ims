@@ -81,6 +81,11 @@ android {
         )
         buildConfigField(
             "String",
+            "DODOPAY_SUPPORT_FEED_URL",
+            buildConfigString(configuredString("turboims.dodopaySupportFeedUrl", "TURBOIMS_DODOPAY_SUPPORT_FEED_URL"))
+        )
+        buildConfigField(
+            "String",
             "BUSINESS_INTENT_BASE_URL",
             buildConfigString(
                 configuredString(

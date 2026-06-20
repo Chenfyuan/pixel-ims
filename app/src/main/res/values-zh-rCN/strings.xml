@@ -196,8 +196,17 @@
     <string name="support_payment_subject">Carrier IMS 项目支持</string>
     <string name="support_payment_button">去支付</string>
     <string name="support_payment_return_app">返回 App</string>
+    <string name="support_ad_free_hint">单笔满 100 元可去广告。</string>
+    <string name="support_ad_free_enabled">本机已去除广告。</string>
+    <string name="support_ad_free_verified">已去除广告。</string>
+    <string name="support_ad_free_verify_failed">未能验证去广告状态。</string>
     <string name="support_records_title">打赏记录</string>
     <string name="support_records_dodopay_note">留言和付款记录由 DoDoPay 保存，App 不保存支付数据。</string>
+    <string name="support_records_loading">正在读取记录...</string>
+    <string name="support_records_load_failed">记录读取失败，稍后再试。</string>
+    <string name="support_records_empty">还没有打赏记录。</string>
+    <string name="support_records_anonymous">匿名用户</string>
+    <string name="support_records_no_message">没有留言</string>
     <string name="business_contact_title">商务合作</string>
     <string name="business_contact_desc">留下联系方式和合作需求</string>
     <string name="business_contact_default">合作联系：GitHub Issue</string>
