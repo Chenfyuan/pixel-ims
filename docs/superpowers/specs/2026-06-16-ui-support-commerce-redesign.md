@@ -105,9 +105,12 @@ IMS 页只服务核心通信配置：
 
 1. 用户填写留言。
 2. 用户选择金额或输入自定义金额。
-3. App 内弹窗打开已配置的 DoDoPay 公开支持页，并把金额、昵称、留言作为公开页面参数传入。
-4. DoDoPay 使用通用付款留言字段保存昵称、联系方式和留言。
-5. 支付记录和留言记录在 DoDoPay 中查看，TurboIMS App 不保存支付数据。
+3. 用户点击 `支付宝支持` 或 `微信支持`。
+4. App 内弹窗打开已配置的 DoDoPay 公开支持页，并把金额、昵称、留言、`channel` 和 `auto_checkout=1` 作为公开页面参数传入。
+5. DoDoPay 自动创建公开支持订单，保存昵称、留言、金额、`client_ref` 和 `proof_key`。
+6. DoDoPay 直接进入 `/pay/{order_id}`，只展示指定渠道的二维码和应付金额。
+7. 用户支付成功后，DoDoPay 继续生成 `payment_proof`。
+8. 支付记录和留言记录在 DoDoPay 中查看，TurboIMS App 不保存支付数据。
 
 未配置 DoDoPay 公开支持页时，页面显示 `暂未开放打赏入口`，不静默失败。
 
@@ -152,9 +155,10 @@ App 侧需要以下接口能力：
 
 - 广告配置：由 Muggle Leads 返回合作卡片、首页弹窗、频率控制参数。公开广告字段使用 `tab`、`position`、`image_url`、`click_url`、`alt`、`title`、`width`、`max_height`、`fit`。
 - 商务合作：由 Muggle Leads 接收称呼、联系方式、合作类型和合作需求。`intent_type` 只能使用 Muggle Leads 支持的 `ads`、`development`、`token_supply`、`other`。
-- DoDoPay 打赏入口：App 内弹窗打开 DoDoPay 已有公开支持页 `/support/{app_id}`；金额、昵称、留言映射到 DoDoPay 通用 `payer_name`、`payer_contact`、`payer_message` 能力。
+- DoDoPay 打赏入口：App 内弹窗打开 DoDoPay 已有公开支持页 `/support/{app_id}`；金额、昵称、留言映射到 DoDoPay 通用 `payer_name`、`payer_contact`、`payer_message` 能力；用户在 App 内选择支付渠道后，App 附加 `channel=ALIPAY|WECHAT` 和 `auto_checkout=1` 请求 DoDoPay 直达支付。
 - DoDoPay 返回 App：App 打开支持页时附加 `return_mode=close` 和 `return_label`；DoDoPay 支付页点击返回后跳转 `https://pay.dodododo.org/checkout/close`，App 只拦截这个固定关闭页并关闭支付弹窗。
 - DoDoPay 支付页必须返回线上可访问的支付地址，不能返回 `localhost`、`127.0.0.1` 或 `[::1]` 这类开发地址；这类问题应在 DoDoPay 侧修正。
+- DoDoPay 支付页当前只展示个人静态收款码，不要求也不暗示会从 WebView 拉起支付宝或微信 App。
 - 打赏记录：App 可读取 DoDoPay 通用公开 Feed `/api/public/support-feeds/{public_feed_id}`；App 不调用 `/api/turboims/*` 这类专用接口，也不使用 `app_id` 读取记录。
 - 去广告证明：App 通过 DoDoPay 公开验证接口 `/api/public/payment-proofs/{payment_proof}` 验证支付事实，再由 App 本地判断是否去广告。
 
@@ -164,7 +168,7 @@ App 侧需要以下接口能力：
 
 - `turboims.adApiBaseUrl` 或 `TURBOIMS_AD_API_BASE_URL`：广告配置服务地址；默认使用 `https://leads.3jiezhiwai.com`，App 只调用 `/api/sources/carrier-ims/ad-slots` 和兼容公开地址，不携带 API Key。
 - `turboims.businessIntentBaseUrl` 或 `TURBOIMS_BUSINESS_INTENT_BASE_URL`：合作意向服务地址；默认使用 `https://leads.3jiezhiwai.com`。
-- `turboims.dodopaySupportUrlTemplate` 或 `TURBOIMS_DODOPAY_SUPPORT_URL_TEMPLATE`：DoDoPay 公开支持页模板。生产默认使用 `https://pay.dodododo.org/support/app_c5b4614bad018dbd`。App 会附加 `amount`、`payer_name`、`payer_message`、`source`、`app_version`、`title`、`description`、`subject`、`button_text`、`return_mode`、`return_label` 查询参数。
+- `turboims.dodopaySupportUrlTemplate` 或 `TURBOIMS_DODOPAY_SUPPORT_URL_TEMPLATE`：DoDoPay 公开支持页模板。生产默认使用 `https://pay.dodododo.org/support/app_c5b4614bad018dbd`。App 会附加 `amount`、`payer_name`、`payer_message`、`channel`、`auto_checkout`、`source`、`app_version`、`title`、`description`、`subject`、`button_text`、`return_mode`、`return_label` 查询参数。
 - `turboims.dodopaySupportFeedUrl` 或 `TURBOIMS_DODOPAY_SUPPORT_FEED_URL`：DoDoPay 公开打赏 Feed 地址。未配置时不拉取记录，只显示 DoDoPay 保存说明。
 - `turboims.businessContactText` 或 `TURBOIMS_BUSINESS_CONTACT_TEXT`：商务合作入口文案。
 - `turboims.businessContactUrl` 或 `TURBOIMS_BUSINESS_CONTACT_URL`：没有表单能力时的备用跳转地址。

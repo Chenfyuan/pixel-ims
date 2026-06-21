@@ -187,6 +187,8 @@
     <string name="support_message_label">想说的话</string>
     <string name="support_amount_label">金额</string>
     <string name="support_go_pay">去支持</string>
+    <string name="support_pay_alipay">支付宝支持</string>
+    <string name="support_pay_wechat">微信支持</string>
     <string name="support_payment_not_configured">暂未开放打赏入口</string>
     <string name="support_amount_required">请填写金额</string>
     <string name="support_amount_invalid">请输入有效金额</string>

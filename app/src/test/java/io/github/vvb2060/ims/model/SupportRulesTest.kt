@@ -68,6 +68,25 @@ class SupportRulesTest {
     }
 
     @Test
+    fun dodopaySupportUrlCanRequestDirectCheckoutChannel() {
+        val url = SupportRules.buildUrlWithQueryParams(
+            template = "https://pay.dodododo.org/support/app_test",
+            params = linkedMapOf(
+                "amount" to "100.00",
+                "payer_name" to "张三",
+                "payer_message" to "继续维护",
+                "channel" to SupportPaymentChannel.ALIPAY.queryValue,
+                "auto_checkout" to "1",
+            ),
+        )
+
+        assertEquals(
+            "https://pay.dodododo.org/support/app_test?amount=100.00&payer_name=%E5%BC%A0%E4%B8%89&payer_message=%E7%BB%A7%E7%BB%AD%E7%BB%B4%E6%8A%A4&channel=ALIPAY&auto_checkout=1",
+            url
+        )
+    }
+
+    @Test
     fun dodopayPublicFeedParsesDisplayOnlySupportRecords() {
         val records = SupportRules.parseSupportRecords(
             JSONObject(

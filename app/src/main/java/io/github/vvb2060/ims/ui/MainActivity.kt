@@ -73,6 +73,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -131,6 +132,7 @@ import io.github.vvb2060.ims.model.ConfigBackupSnapshot
 import io.github.vvb2060.ims.model.NetworkExitStatus
 import io.github.vvb2060.ims.model.ShizukuStatus
 import io.github.vvb2060.ims.model.SimSelection
+import io.github.vvb2060.ims.model.SupportPaymentChannel
 import io.github.vvb2060.ims.model.SupportRecord
 import io.github.vvb2060.ims.model.SupportRules
 import io.github.vvb2060.ims.model.SystemInfo
@@ -1327,8 +1329,8 @@ class MainActivity : BaseActivity() {
                         supportRecordsLoading = supportRecordsLoading,
                         supportRecords = supportRecords,
                         supportRecordsError = supportRecordsError,
-                        onCreateSupportOrder = supportOrder@{ name, message, amount ->
-                            val result = viewModel.buildDodopaySupportUrl(name, message, amount)
+                        onCreateSupportOrder = supportOrder@{ name, message, amount, channel ->
+                            val result = viewModel.buildDodopaySupportUrl(name, message, amount, channel)
                             val url = result.getOrNull()
                             if (url == null) {
                                 Toast.makeText(
@@ -2276,11 +2278,13 @@ private fun SupportPage(
     supportRecordsLoading: Boolean,
     supportRecords: List<SupportRecord>,
     supportRecordsError: String?,
-    onCreateSupportOrder: (String, String, String) -> Unit,
+    onCreateSupportOrder: (String, String, String, SupportPaymentChannel) -> Unit,
 ) {
     var name by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("9.90") }
+    val amountValid = SupportRules.normalizeSupportAmount(amount) != null
+    val supportEnabled = supportPaymentConfigured && amountValid
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -2331,12 +2335,33 @@ private fun SupportPage(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
             )
-            Button(
-                onClick = { onCreateSupportOrder(name, message, amount) },
-                enabled = supportPaymentConfigured && SupportRules.normalizeSupportAmount(amount) != null,
-                modifier = Modifier.height(44.dp)
-            ) {
-                Text(stringResource(R.string.support_go_pay))
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf("9.90", "30", "100").forEach { preset ->
+                    AssistChip(
+                        onClick = { amount = preset },
+                        label = { Text("¥$preset") },
+                    )
+                }
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(
+                    onClick = { onCreateSupportOrder(name, message, amount, SupportPaymentChannel.ALIPAY) },
+                    enabled = supportEnabled,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(44.dp)
+                ) {
+                    Text(stringResource(R.string.support_pay_alipay))
+                }
+                OutlinedButton(
+                    onClick = { onCreateSupportOrder(name, message, amount, SupportPaymentChannel.WECHAT) },
+                    enabled = supportEnabled,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(44.dp)
+                ) {
+                    Text(stringResource(R.string.support_pay_wechat))
+                }
             }
         }
     }

@@ -79,6 +79,11 @@ data class PaymentProofVerification(
     val channel: String,
 )
 
+enum class SupportPaymentChannel(val queryValue: String) {
+    ALIPAY("ALIPAY"),
+    WECHAT("WECHAT"),
+}
+
 data class ConfigBackupSnapshot(
     val id: String,
     val name: String,

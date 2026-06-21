@@ -29,6 +29,7 @@ import io.github.vvb2060.ims.model.ConfigBackupSnapshot
 import io.github.vvb2060.ims.model.NetworkExitStatus
 import io.github.vvb2060.ims.model.ShizukuStatus
 import io.github.vvb2060.ims.model.SimSelection
+import io.github.vvb2060.ims.model.SupportPaymentChannel
 import io.github.vvb2060.ims.model.SupportRecord
 import io.github.vvb2060.ims.model.SupportRules
 import io.github.vvb2060.ims.model.SystemInfo
@@ -706,6 +707,7 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         name: String,
         message: String,
         amount: String,
+        channel: SupportPaymentChannel,
     ): Result<String> = runCatching {
         val template = dodopaySupportUrlTemplate
             ?: throw IllegalStateException(application.getString(R.string.support_payment_not_configured))
@@ -728,6 +730,8 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
                 "return_label" to application.getString(R.string.support_payment_return_app),
                 "client_ref" to getOrCreateSupportClientRef(),
                 "proof_key" to SupportRules.AD_FREE_PROOF_KEY,
+                "channel" to channel.queryValue,
+                "auto_checkout" to "1",
             ),
             aliases = mapOf(
                 "name" to "payer_name",

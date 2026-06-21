@@ -187,6 +187,8 @@
     <string name="support_message_label">Message</string>
     <string name="support_amount_label">Amount</string>
     <string name="support_go_pay">Support</string>
+    <string name="support_pay_alipay">Alipay</string>
+    <string name="support_pay_wechat">WeChat Pay</string>
     <string name="support_payment_not_configured">Support payment is not open yet.</string>
     <string name="support_amount_required">Amount is required.</string>
     <string name="support_amount_invalid">Enter a valid amount.</string>
