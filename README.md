@@ -25,6 +25,13 @@
 
 本项目基于 [ryfineZ/carrier-ims-for-pixel](https://github.com/ryfineZ/carrier-ims-for-pixel) 的个人维护分支，移除了商业化模块（广告/打赏/商务合作），专注于纯净的 IMS 工具体验。
 
+## 界面预览
+
+<p align="center">
+  <img src="docs/screenshot_tools.png" width="46%" alt="工具页" />
+  <img src="docs/screenshot_about.png" width="46%" alt="关于页" />
+</p>
+
 ## 功能矩阵
 
 | 模块 | 能力 | 说明 |

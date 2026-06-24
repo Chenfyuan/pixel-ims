@@ -25,6 +25,13 @@
 
 A personal maintenance fork based on [ryfineZ/carrier-ims-for-pixel](https://github.com/ryfineZ/carrier-ims-for-pixel), with commercial modules (ads/donations/business cooperation) removed for a clean IMS tool experience.
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshot_tools.png" width="46%" alt="Tools" />
+  <img src="docs/screenshot_about.png" width="46%" alt="About" />
+</p>
+
 ## Feature Matrix
 
 | Module | Capability | Notes |
