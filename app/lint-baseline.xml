@@ -1,0 +1,2396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.13.2" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.2)" variant="all" version="8.13.2">
+
+    <issue
+        id="MissingPermission"
+        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
+        errorLine1="        val info = sm.activeSubscriptionInfoList?.firstOrNull { it.subscriptionId == subId } ?: return null"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/privileged/ImsModifier.kt"
+            line="426"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        message="Missing permissions required by SubscriptionManager.getActiveSubscriptionInfoList: android.permission.READ_PHONE_STATE"
+        errorLine1="        val info = sm.activeSubscriptionInfoList?.firstOrNull { it.subscriptionId == subId } ?: return null"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/privileged/ImsModifier.kt"
+            line="426"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        message="Missing permissions required by TelephonyManager.getDataNetworkType: android.permission.READ_PHONE_STATE or android.permission.READ_BASIC_PHONE_STATE"
+        errorLine1="            telephony?.dataNetworkType ?: TelephonyManager.NETWORK_TYPE_UNKNOWN"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/viewmodel/MainViewModel.kt"
+            line="959"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingPermission"
+        message="Missing permissions required by TelephonyManager.getVoiceNetworkType: android.permission.READ_PHONE_STATE or android.permission.READ_BASIC_PHONE_STATE"
+        errorLine1="            telephony?.voiceNetworkType ?: TelephonyManager.NETWORK_TYPE_UNKNOWN"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/viewmodel/MainViewModel.kt"
+            line="962"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="        targetSdk = libs.versions.android.targetSdk.get().toInt()"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle.kts"
+            line="49"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="android-targetSdk = &quot;36&quot;"
+        errorLine2="                    ~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="8"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="QueryPermissionsNeeded"
+        message="Consider adding a `&lt;queries>` declaration to your manifest when calling this method; see https://g.co/dev/packagevisibility for details"
+        errorLine1="    if (intent.resolveActivity(context.packageManager) == null) {"
+        errorLine2="               ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="299"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of com.android.application than 8.13.2 is available: 9.2.1"
+        errorLine1="agp = &quot;8.13.2&quot;"
+        errorLine2="      ~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="2"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        message="A newer version of com.android.library than 8.13.2 is available: 9.2.1"
+        errorLine1="agp = &quot;8.13.2&quot;"
+        errorLine2="      ~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="2"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.core:core-ktx than 1.17.0 is available: 1.19.0"
+        errorLine1="coreKtx = &quot;1.17.0&quot;"
+        errorLine2="          ~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="13"
+            column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.10.0 is available: 2.11.0"
+        errorLine1="lifecycleRuntimeKtx = &quot;2.10.0&quot;"
+        errorLine2="                      ~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="14"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.activity:activity-compose than 1.12.2 is available: 1.13.0"
+        errorLine1="activityCompose = &quot;1.12.2&quot;"
+        errorLine2="                  ~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="15"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.compose:compose-bom than 2025.12.01 is available: 2026.06.01"
+        errorLine1="composeBom = &quot;2025.12.01&quot;"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="16"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.compose.material3:material3 than 1.5.0-alpha11 is available: 1.5.0-alpha23"
+        errorLine1="material3 = &quot;1.5.0-alpha11&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.10.0 is available: 2.11.0"
+        errorLine1="lifecycle = &quot;2.10.0&quot;"
+        errorLine2="            ~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of org.jetbrains.kotlin.android than 2.3.0 is available: 2.4.0"
+        errorLine1="kotlin = &quot;2.3.0&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="3"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of org.jetbrains.kotlin.plugin.compose than 2.3.0 is available: 2.4.0"
+        errorLine1="kotlin = &quot;2.3.0&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="3"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        message="A newer version of org.json:json than 20240303 is available: 20260522"
+        errorLine1="json = &quot;20240303&quot;"
+        errorLine2="       ~~~~~~~~~~">
+        <location
+            file="$HOME/work/pixel-ims/pixel-ims/gradle/libs.versions.toml"
+            line="21"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                    context.getString(R.string.config_failed, resultMsg),"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="681"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                        context.getString("
+        errorLine2="                        ^">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="739"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                            context.getString(R.string.config_failed, resultMsg),"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="791"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                            context.getString(R.string.ims_register_apply_failed, applyResultMsg),"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="1009"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                            context.getString(R.string.config_failed, resultMsg),"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="1078"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                    context.getString(R.string.apn_draft_invalid, validation),"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="1259"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                label = context.getString(labelRes),"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="1271"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                        context.getString(R.string.apn_apply_success)"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="1334"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="LocalContextGetResourceValueCall"
+        message="Querying resource values using LocalContext.current"
+        errorLine1="                                        context.getString(R.string.apn_apply_failed, resultMsg)"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/ui/MainActivity.kt"
+            line="1336"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;brand_name&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;brand_name&quot;>Pixel IMS&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="5"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;brand_subtitle&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;brand_subtitle&quot;>TurboIMS Fork · Carrier and IMS Toolkit&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;tab_tools&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;tab_tools&quot;>Tools&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="7"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;tab_about&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;tab_about&quot;>About&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;action_open&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;action_open&quot;>Open&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;action_close&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;action_close&quot;>Close&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;current_version&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;current_version&quot;>Current: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="15"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;current_version_with_update&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;current_version_with_update&quot;>Current: %1$s · Update: %2$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;update_available_inline&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;update_available_inline&quot;>Update: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;feature_group_ims&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;feature_group_ims&quot;>IMS Features&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="36"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;feature_group_network_display&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;feature_group_network_display&quot;>Network Display&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;feature_group_compat&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;feature_group_compat&quot;>Compatibility Fix&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="38"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_registration_status_registered_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_registration_status_registered_desc&quot;>IMS is registered.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="45"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_registration_status_registering_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_registration_status_registering_desc&quot;>Registering, usually takes a few seconds.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="46"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_registration_status_unknown_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_registration_status_unknown_desc&quot;>Status unknown. Sync again shortly.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="47"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_registration_status_registering&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_registration_status_registering&quot;>Registering&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="48"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_registration_per_sim_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_registration_per_sim_desc&quot;>In All SIM mode, IMS registration is handled per SIM and results may differ.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="49"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;all_sim_switch_only_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;all_sim_switch_only_desc&quot;>All switches apply instantly.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="50"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_current_format_iso_actual_mcc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_current_format_iso_actual_mcc&quot;>%1$s (ISO: %2$s, actual MCC: %3$s)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="67"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_not_overridden&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_not_overridden&quot;>Not overridden&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="70"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_current_format_mcc_only&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_current_format_mcc_only&quot;>MCC: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="71"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_actual_mcc_note&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_actual_mcc_note&quot;>Current network MCC: %1$s (ISO override only, MCC unchanged)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="72"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_actual_mcc_mnc_note&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_actual_mcc_mnc_note&quot;>Current network MCC/MNC: %1$s/%2$s (ISO override only, MCC unchanged)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="73"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_mcc_label&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_mcc_label&quot;>MCC&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="74"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_mcc_placeholder&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_mcc_placeholder&quot;>e.g. 460 / 310 / 310-316&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="75"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_mnc_label&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_mnc_label&quot;>MNC (read-only)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="76"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_mnc_placeholder&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_mnc_placeholder&quot;>No MNC available&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="77"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_mnc_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_mnc_desc&quot;>Current SIM MNC, used to build MCCMNC for carrier matching&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="78"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_iso_label&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_iso_label&quot;>ISO&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="79"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_quick_pick_label&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_quick_pick_label&quot;>Country Quick Pick&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="80"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;country_iso_quick_pick_placeholder&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;country_iso_quick_pick_placeholder&quot;>Pick a common country, or choose \&quot;Other\&quot; to input MCC + ISO&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="81"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;issue_failure_hint_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;issue_failure_hint_title&quot;>Failure logs detected&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="87"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;issue_failure_hint_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;issue_failure_hint_desc&quot;>Submit an Issue with system info and failure logs.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="88"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;issue_failure_submit&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;issue_failure_submit&quot;>Submit Issue&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="89"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;action_update_available&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;action_update_available&quot;>New&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="94"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_title&quot;>Network Verification Fix&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="95"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_action&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_action&quot;>One-tap Network Fix&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="96"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_restore_action&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_restore_action&quot;>Restore Default&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="97"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_normal_action&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_normal_action&quot;>Network OK&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="98"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_running&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_running&quot;>Fixing network…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="99"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_restore_running&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_restore_running&quot;>Restoring default verification URLs…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="100"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_checking&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_checking&quot;>Checking…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="101"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_desc&quot;>Fixes cases where network is connected in China but shows \&quot;Restricted\&quot; or an exclamation mark and has no internet.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="102"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_status_checking&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_status_checking&quot;>Checking current verification URLs and network reachability…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="103"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_status_need_fix&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_status_need_fix&quot;>Default verification may be unreachable. A one-tap fix is recommended.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="104"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_status_restorable&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_status_restorable&quot;>China (.cn) verification URLs are active. You can restore system defaults anytime.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="105"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_status_normal&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_status_normal&quot;>Verification network is reachable. No fix needed.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="106"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_requires_shizuku&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_requires_shizuku&quot;>Start and authorize Shizuku before running this fix.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="107"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_success&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_success&quot;>Network fix applied. If the status does not update, reconnect the network and retry.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="108"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_fix_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_fix_failed&quot;>Network fix failed: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="109"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_restore_success&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_restore_success&quot;>System default verification URLs restored&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="110"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;captive_portal_restore_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;captive_portal_restore_failed&quot;>Restore default failed: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="111"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;tiktok_network_fix&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;tiktok_network_fix&quot;>Fix TikTok No Network&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="132"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;tiktok_network_fix_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;tiktok_network_fix_desc&quot;>Domestic SIM only: ON uses random numeric ISO; OFF restores country ISO by SIM home profile.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="133"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;tiktok_network_fix_unavailable&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;tiktok_network_fix_unavailable&quot;>Available only for mainland China SIMs.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="134"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;extra_requires_shizuku_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;extra_requires_shizuku_title&quot;>Shizuku required&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="135"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_compat_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_compat_title&quot;>Region Compatibility&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="136"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_mainland_sim&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_mainland_sim&quot;>Mainland SIM&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="137"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_tiktok_applicable&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_tiktok_applicable&quot;>TikTok Fix&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="138"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_status_yes&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_status_yes&quot;>Yes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="139"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_status_no&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_status_no&quot;>No&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="140"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_status_applicable&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_status_applicable&quot;>Applicable&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="141"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;region_status_not_applicable&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;region_status_not_applicable&quot;>Not applicable&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="142"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_title&quot;>Network Exit Check&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="143"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_desc&quot;>Checks public IP and common service reachability after you tap.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="144"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_action&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_action&quot;>Start Check&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="145"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_checking&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_checking&quot;>Checking…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="146"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_failed&quot;>Check failed: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="147"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_ip&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_ip&quot;>IP&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="148"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_region&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_region&quot;>Region&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="149"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_org&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_org&quot;>Carrier&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="150"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_risk&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_risk&quot;>Risk&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="151"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;network_exit_services&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;network_exit_services&quot;>Services&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="152"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_sim_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_sim_title&quot;>APN Check and Apply&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="153"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;open_apn_settings&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;open_apn_settings&quot;>Open APN&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="154"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_settings_open_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_settings_open_failed&quot;>Cannot open APN settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="155"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_auto_apply&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_auto_apply&quot;>Apply Suggested APN&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="156"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_confirm_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_confirm_title&quot;>Apply Suggested APN&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="157"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_name&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_name&quot;>Name&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="158"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_type&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_type&quot;>Type&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="159"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_confirm_apply&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_confirm_apply&quot;>Apply&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="160"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_apply_success&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_apply_success&quot;>APN applied&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="161"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_apply_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_apply_failed&quot;>APN failed: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="162"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apn_draft_invalid&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apn_draft_invalid&quot;>APN info is incomplete: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="163"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_guide_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_guide_title&quot;>Quick Settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="164"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_guide_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_guide_desc&quot;>Add tiles to Android Quick Settings for faster access.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="165"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_add_volte_sim_1&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_add_volte_sim_1&quot;>VoLTE SIM 1&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="166"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_add_ims_sim_1&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_add_ims_sim_1&quot;>IMS SIM 1&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="167"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_add_volte_sim_2&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_add_volte_sim_2&quot;>VoLTE SIM 2&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="168"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_add_ims_sim_2&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_add_ims_sim_2&quot;>IMS SIM 2&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="169"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_tile_added&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_tile_added&quot;>Quick tile added&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="170"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_tile_already_added&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_tile_already_added&quot;>Quick tile already exists&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="171"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_tile_not_added&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_tile_not_added&quot;>Quick tile was not added&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="172"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;qs_tile_add_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;qs_tile_add_failed&quot;>Cannot add quick tile&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="173"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_title&quot;>Config Backup&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="174"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_desc&quot;>Back up %s switch settings. IMS registration is not included.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="175"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_action&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_action&quot;>Back Up SIM&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="176"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_empty&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_empty&quot;>No backups yet&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="177"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_restore&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_restore&quot;>Restore&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="178"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_delete&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_delete&quot;>Delete&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="179"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_saved&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_saved&quot;>Backup saved&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="180"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_restored&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_restored&quot;>Backup restored&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="181"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_mismatch_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_mismatch_title&quot;>SIM info differs&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="182"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_mismatch_message&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_mismatch_message&quot;>Backup: %1$s\nCurrent: %2$s\nRestore to the current SIM?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="183"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_backup_restore_anyway&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_backup_restore_anyway&quot;>Restore Anyway&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="184"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;apply_config_running&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;apply_config_running&quot;>Applying…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="188"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;reset_config_desc&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;reset_config_desc&quot;>Reset clears current SIM overrides and restores carrier defaults.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="190"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_menu&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_menu&quot;>Network Diagnostics&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="193"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_running&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_running&quot;>Running diagnostics via Shizuku…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="194"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_finished&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_finished&quot;>Diagnostics completed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="195"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_empty&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_empty&quot;>No diagnostics output yet&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="196"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_failed&quot;>Diagnostics failed. Please retry.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="197"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_no_available_sim&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_no_available_sim&quot;>No available SIM for diagnostics.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="198"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;diagnostics_all_sim_fallback&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;diagnostics_all_sim_fallback&quot;>Using primary SIM for detailed checks: %1$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="199"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;restore_confirm_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;restore_confirm_title&quot;>Confirm Restore&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="200"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;restore_confirm_message&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;restore_confirm_message&quot;>This clears current SIM overrides and restores current system carrier configuration. Continue?&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="201"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;restore_confirm_action&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;restore_confirm_action&quot;>Restore&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="202"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;sim_list_refresh_failed_restart_shizuku&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;sim_list_refresh_failed_restart_shizuku&quot;>SIM list read failed, please restart Shizuku service and refresh again&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="218"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_apply_in_progress&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_apply_in_progress&quot;>Applying configuration…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="219"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_apply_success_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_apply_success_title&quot;>Configuration Applied&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="220"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_apply_success_message&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_apply_success_message&quot;>Configuration has been applied.\nIf Wi-Fi is connected, turn off Wi-Fi, then check the 5G/5G+ icon and test mobile data.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="221"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;config_apply_failed_title&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;config_apply_failed_title&quot;>Apply Failed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="222"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_register_apply_then_register&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_register_apply_then_register&quot;>Applying config, then triggering IMS registration…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="231"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_register_apply_failed&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_register_apply_failed&quot;>Apply failed, IMS registration not triggered: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="232"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;ims_register_unknown&quot; is not translated in &quot;de&quot; (German), &quot;ru&quot; (Russian), &quot;pt&quot; (Portuguese), &quot;in&quot; (Indonesian), &quot;ms&quot; (Malay), &quot;it&quot; (Italian), &quot;fr&quot; (French), &quot;es&quot; (Spanish), &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;th&quot; (Thai), &quot;ja&quot; (Japanese), &quot;tr&quot; (Turkish)"
+        errorLine1="    &lt;string name=&quot;ims_register_unknown&quot;>IMS status read failed. Try again shortly.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="235"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_200` appears to be unused"
+        errorLine1="    &lt;color name=&quot;purple_200&quot;>#FFBB86FC&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="3"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_500` appears to be unused"
+        errorLine1="    &lt;color name=&quot;purple_500&quot;>#FF6200EE&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="4"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.purple_700` appears to be unused"
+        errorLine1="    &lt;color name=&quot;purple_700&quot;>#FF3700B3&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="5"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.teal_200` appears to be unused"
+        errorLine1="    &lt;color name=&quot;teal_200&quot;>#FF03DAC5&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="6"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.teal_700` appears to be unused"
+        errorLine1="    &lt;color name=&quot;teal_700&quot;>#FF018786&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="7"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.black` appears to be unused"
+        errorLine1="    &lt;color name=&quot;black&quot;>#FF000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="8"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.white` appears to be unused"
+        errorLine1="    &lt;color name=&quot;white&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="9"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_done` appears to be unused"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/ic_done.xml"
+            line="1"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.for_pixel` appears to be unused"
+        errorLine1="    &lt;string name=&quot;for_pixel&quot;>forked by Mystery0&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_open` appears to be unused"
+        errorLine1="    &lt;string name=&quot;action_open&quot;>Open&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_close` appears to be unused"
+        errorLine1="    &lt;string name=&quot;action_close&quot;>Close&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.system_info` appears to be unused"
+        errorLine1="    &lt;string name=&quot;system_info&quot;>System Info&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.app_version` appears to be unused"
+        errorLine1="    &lt;string name=&quot;app_version&quot;>App Version: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.current_version` appears to be unused"
+        errorLine1="    &lt;string name=&quot;current_version&quot;>Current: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="15"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.current_version_with_update` appears to be unused"
+        errorLine1="    &lt;string name=&quot;current_version_with_update&quot;>Current: %1$s · Update: %2$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.update_available_inline` appears to be unused"
+        errorLine1="    &lt;string name=&quot;update_available_inline&quot;>Update: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.system_build_version` appears to be unused"
+        errorLine1="    &lt;string name=&quot;system_build_version&quot;>System Build Version: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_sync_short` appears to be unused"
+        errorLine1="    &lt;string name=&quot;action_sync_short&quot;>Sync&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="41"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_default_short` appears to be unused"
+        errorLine1="    &lt;string name=&quot;action_default_short&quot;>Default&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.ims_registration_per_sim_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;ims_registration_per_sim_desc&quot;>In All SIM mode, IMS registration is handled per SIM and results may differ.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="49"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.all_sim_switch_only_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;all_sim_switch_only_desc&quot;>All switches apply instantly.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="50"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_option_default` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_option_default&quot;>System default (no override)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="55"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_current_format_iso_actual_mcc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_current_format_iso_actual_mcc&quot;>%1$s (ISO: %2$s, actual MCC: %3$s)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="67"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_unknown` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_unknown&quot;>Unknown&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="68"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_actual_mcc_note` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_actual_mcc_note&quot;>Current network MCC: %1$s (ISO override only, MCC unchanged)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="72"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_actual_mcc_mnc_note` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_actual_mcc_mnc_note&quot;>Current network MCC/MNC: %1$s/%2$s (ISO override only, MCC unchanged)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="73"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_quick_pick_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_quick_pick_label&quot;>Country Quick Pick&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="80"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.country_iso_custom_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;country_iso_custom_label&quot;>Manual ISO&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="82"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.ims_user_agent` appears to be unused"
+        errorLine1="    &lt;string name=&quot;ims_user_agent&quot;>IMS User Agent&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="84"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.ims_user_agent_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;ims_user_agent_desc&quot;>Sets the IMS registration identity string for compatibility&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="85"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.apply_config` appears to be unused"
+        errorLine1="    &lt;string name=&quot;apply_config&quot;>Apply&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="187"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.apply_config_running` appears to be unused"
+        errorLine1="    &lt;string name=&quot;apply_config_running&quot;>Applying…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="188"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.reset_config_desc` appears to be unused"
+        errorLine1="    &lt;string name=&quot;reset_config_desc&quot;>Reset clears current SIM overrides and restores carrier defaults.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="190"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.restart_ims` appears to be unused"
+        errorLine1="    &lt;string name=&quot;restart_ims&quot;>Restart IMS&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="191"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.diagnostics_no_available_sim` appears to be unused"
+        errorLine1="    &lt;string name=&quot;diagnostics_no_available_sim&quot;>No available SIM for diagnostics.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="198"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.diagnostics_all_sim_fallback` appears to be unused"
+        errorLine1="    &lt;string name=&quot;diagnostics_all_sim_fallback&quot;>Using primary SIM for detailed checks: %1$s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="199"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.tip` appears to be unused"
+        errorLine1="    &lt;string name=&quot;tip&quot;>Tips:&lt;/string>"
+        errorLine2="            ~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="205"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.array.tips` appears to be unused"
+        errorLine1="    &lt;string-array name=&quot;tips&quot;>"
+        errorLine2="                  ~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="206"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.shizuku_no_permission_msg` appears to be unused"
+        errorLine1="    &lt;string name=&quot;shizuku_no_permission_msg&quot;>Please grant Shizuku permission&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="216"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.phone_no_permission_msg` appears to be unused"
+        errorLine1="    &lt;string name=&quot;phone_no_permission_msg&quot;>Please grant permission to read SIM card&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="217"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.config_apply_in_progress` appears to be unused"
+        errorLine1="    &lt;string name=&quot;config_apply_in_progress&quot;>Applying configuration…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="219"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.config_apply_success_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;config_apply_success_title&quot;>Configuration Applied&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="220"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.config_apply_success_message` appears to be unused"
+        errorLine1="    &lt;string name=&quot;config_apply_success_message&quot;>Configuration has been applied.\nIf Wi-Fi is connected, turn off Wi-Fi, then check the 5G/5G+ icon and test mobile data.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="221"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.config_apply_failed_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;config_apply_failed_title&quot;>Apply Failed&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="222"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.config_success_message` appears to be unused"
+        errorLine1="    &lt;string name=&quot;config_success_message&quot;>Configuration applied!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="223"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.load_config_history_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;load_config_history_success&quot;>Loaded saved configuration history&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="226"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.load_config_default_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;load_config_default_success&quot;>Loaded default configuration&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="227"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.load_config_current_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;load_config_current_success&quot;>Loaded current system configuration&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="228"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.ims_restart_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;ims_restart_success&quot;>IMS restarted&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="229"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.update_open_settings` appears to be unused"
+        errorLine1="    &lt;string name=&quot;update_open_settings&quot;>Open Settings&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="251"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="TypographyDashes"
+        message="Replace &quot;-&quot; with an &quot;en dash&quot; character (–, &amp;#8211;) ?"
+        errorLine1="    &lt;string name=&quot;country_iso_mcc_placeholder&quot;>例如 460 / 310 / 310-316&lt;/string>"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-zh-rCN/strings.xml"
+            line="75"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="TypographyDashes"
+        message="Replace &quot;-&quot; with an &quot;en dash&quot; character (–, &amp;#8211;) ?"
+        errorLine1="    &lt;string name=&quot;country_iso_mcc_placeholder&quot;>e.g. 460 / 310 / 310-316&lt;/string>"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="75"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `String.toUri` instead?"
+        errorLine1="            Uri.parse(&quot;$PREFER_APN_URI_PREFIX$subId&quot;),"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/privileged/ApnModifier.kt"
+            line="119"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        errorLine1="        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)"
+        errorLine2="        ^">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/UpdateApkCleanup.kt"
+            line="19"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="UseKtx"
+        message="Use the KTX extension function `SharedPreferences.edit` instead?"
+        errorLine1="        prefs.edit().clear().apply()"
+        errorLine2="        ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/io/github/vvb2060/ims/UpdateApkCleanup.kt"
+            line="42"
+            column="9"/>
+    </issue>
+
+</issues>
