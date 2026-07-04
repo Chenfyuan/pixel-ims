@@ -24,6 +24,9 @@ jobs:
         run: ./gradlew :app:testDebugUnitTest
       - name: Run lint
         run: ./gradlew :app:lintDebug
+      - name: Print lint baseline
+        if: always()
+        run: cat app/lint-baseline.xml || true
       - name: Build debug APK
         run: ./gradlew :app:assembleDebug
       - name: Upload lint report
