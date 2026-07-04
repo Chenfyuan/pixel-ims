@@ -4,6 +4,7 @@ on:
     branches:
       - master
       - release
+  workflow_dispatch:
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -31,4 +32,11 @@ jobs:
         with:
           name: lint-report
           path: app/build/reports/lint-results-debug.html
+          if-no-files-found: ignore
+      - name: Upload lint baseline
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-baseline
+          path: app/lint-baseline.xml
           if-no-files-found: ignore
