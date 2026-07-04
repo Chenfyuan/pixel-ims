@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--
+      国内联网验证 / 网络出口检测依赖真实系统使用的 HTTP 探测地址
+      (与 CaptivePortalFixer.CN_HTTP_URL 保持一致)，Android 9+ 默认禁止
+      应用自身发起明文请求，需要显式放行，否则可达性检测会始终判定为失败。
+    -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">connectivitycheck.gstatic.cn</domain>
+    </domain-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>
