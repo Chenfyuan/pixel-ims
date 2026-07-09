@@ -1,6 +1,5 @@
 package io.github.vvb2060.ims.ui
 
-import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.app.StatusBarManager
 import android.content.BroadcastReceiver
@@ -47,7 +46,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cached
 import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.SimCard
@@ -73,7 +71,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -84,7 +81,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -94,7 +90,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -108,7 +103,6 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.FileProvider
@@ -126,6 +120,7 @@ import io.github.vvb2060.ims.model.NetworkExitStatus
 import io.github.vvb2060.ims.model.ShizukuStatus
 import io.github.vvb2060.ims.model.SimSelection
 import io.github.vvb2060.ims.model.SupportRules
+import io.github.vvb2060.ims.model.VersionUtils
 import io.github.vvb2060.ims.model.SystemInfo
 import io.github.vvb2060.ims.privileged.ImsModifier
 import io.github.vvb2060.ims.tiles.SIM1IMSStatusTileService
@@ -1195,7 +1190,7 @@ class MainActivity : BaseActivity() {
                                         diagnosticsLines.add(line)
                                     }
                                 } catch (t: Throwable) {
-                                    diagnosticsLines.add("❌ 诊断异常：${t.javaClass.simpleName} (${t.message ?: "unknown"})")
+                                    diagnosticsLines.add("${context.getString(R.string.diagnostics_exception_prefix)}${t.javaClass.simpleName} (${t.message ?: "unknown"})")
                                     Toast.makeText(
                                         context,
                                         R.string.diagnostics_failed,
@@ -2059,6 +2054,29 @@ private fun ConfigBackupCard(
     onRestoreBackup: (ConfigBackupSnapshot) -> Unit,
     onDeleteBackup: (ConfigBackupSnapshot) -> Unit,
 ) {
+    var pendingDeleteBackup by remember { mutableStateOf<ConfigBackupSnapshot?>(null) }
+
+    if (pendingDeleteBackup != null) {
+        AlertDialog(
+            onDismissRequest = { pendingDeleteBackup = null },
+            title = { Text(stringResource(R.string.config_backup_delete)) },
+            text = { Text(stringResource(R.string.config_backup_delete_confirm, pendingDeleteBackup!!.name)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    onDeleteBackup(pendingDeleteBackup!!)
+                    pendingDeleteBackup = null
+                }) {
+                    Text(stringResource(android.R.string.ok))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { pendingDeleteBackup = null }) {
+                    Text(stringResource(android.R.string.cancel))
+                }
+            }
+        )
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -2113,7 +2131,7 @@ private fun ConfigBackupCard(
                         TextButton(onClick = { onRestoreBackup(backup) }) {
                             Text(stringResource(R.string.config_backup_restore))
                         }
-                        TextButton(onClick = { onDeleteBackup(backup) }) {
+                        TextButton(onClick = { pendingDeleteBackup = backup }) {
                             Text(stringResource(R.string.config_backup_delete))
                         }
                     }
@@ -2197,7 +2215,7 @@ private fun serviceSummary(status: NetworkExitStatus): String {
         false -> "FAIL"
         null -> "N/A"
     }
-    return "Google ${flag(status.googleReachable)} · TikTok ${flag(status.tiktokReachable)} · 验证 ${flag(status.captivePortalReachable)}"
+    return "Google ${flag(status.googleReachable)} · TikTok ${flag(status.tiktokReachable)} · Portal ${flag(status.captivePortalReachable)}"
 }
 
 private fun backupSubtitle(backup: ConfigBackupSnapshot): String {
@@ -2890,76 +2908,17 @@ private fun buildUpdateApkFileName(version: String): String {
     return "CarrierIMSForPixel-$sanitized.apk"
 }
 
-private data class ParsedVersion(
-    val baseParts: List<Int>,
-    val revisionCode: Int,
-    val channelRank: Int,
-)
+private fun isVersionNewer(latest: String, current: String): Boolean =
+    VersionUtils.isVersionNewer(latest, current)
 
-private fun parseVersion(version: String): ParsedVersion? {
-    val normalized = version.trim().removePrefix("v").removePrefix("V")
-    val baseMatch = Regex("\\d+(?:\\.\\d+){1,2}").find(normalized) ?: return null
-    val baseParts = baseMatch.value.split('.').map { it.toIntOrNull() ?: 0 }
-    val suffix = normalized.substring(baseMatch.range.last + 1)
-    val channelMatch = Regex("(?:^|[._-])([rRdD])(\\d+)").find(suffix)
-    val channel = channelMatch?.groupValues?.getOrNull(1)?.lowercase(Locale.US)
-    val revisionCode = channelMatch?.groupValues?.getOrNull(2)?.toIntOrNull() ?: 0
-    val channelRank = when (channel) {
-        "r" -> 2
-        "d" -> 1
-        else -> 0
-    }
-    return ParsedVersion(baseParts, revisionCode, channelRank)
-}
+private fun normalizeCountryIso(value: String): String =
+    VersionUtils.normalizeCountryIso(value)
 
-private fun compareVersionParts(left: List<Int>, right: List<Int>): Int {
-    val maxSize = maxOf(left.size, right.size)
-    for (index in 0 until maxSize) {
-        val l = left.getOrElse(index) { 0 }
-        val r = right.getOrElse(index) { 0 }
-        if (l != r) return l.compareTo(r)
-    }
-    return 0
-}
+private fun sanitizeCountryIsoInput(value: String): String =
+    VersionUtils.sanitizeCountryIsoInput(value)
 
-private fun isVersionNewer(latest: String, current: String): Boolean {
-    val latestVersion = parseVersion(latest)
-    val currentVersion = parseVersion(current)
-    if (latestVersion == null || currentVersion == null) {
-        return latest.trim() != current.trim()
-    }
-    val baseCompare = compareVersionParts(latestVersion.baseParts, currentVersion.baseParts)
-    if (baseCompare != 0) {
-        return baseCompare > 0
-    }
-    if (latestVersion.revisionCode != currentVersion.revisionCode) {
-        return latestVersion.revisionCode > currentVersion.revisionCode
-    }
-    return latestVersion.channelRank > currentVersion.channelRank
-}
-
-private fun normalizeCountryIso(value: String): String {
-    return value.trim().lowercase(Locale.US)
-}
-
-private fun sanitizeCountryIsoInput(value: String): String {
-    return normalizeCountryIso(value)
-        .filter { it.isLetterOrDigit() }
-        .take(8)
-}
-
-private fun sanitizeMccInput(value: String): String {
-    val cleaned = value.trim().filter { it.isDigit() || it == '-' }
-    if (cleaned.isEmpty()) return ""
-    val firstDash = cleaned.indexOf('-')
-    return if (firstDash == -1) {
-        cleaned.take(7)
-    } else {
-        val left = cleaned.substring(0, firstDash).filter { it.isDigit() }.take(3)
-        val right = cleaned.substring(firstDash + 1).filter { it.isDigit() }.take(3)
-        if (right.isNotEmpty()) "$left-$right" else left
-    }
-}
+private fun sanitizeMccInput(value: String): String =
+    VersionUtils.sanitizeMccInput(value)
 
 @Composable
 private fun countryIsoOptionText(option: CountryIsoOption): String {

@@ -109,8 +109,11 @@ android {
     }
     @Suppress("UnstableApiUsage")
     androidResources {
-        localeFilters.add("en")
-        localeFilters.add("zh-rCN")
+        localeFilters += setOf(
+            "en", "ar", "de", "es", "fr", "in", "it", "ja", "ms",
+            "pt-rBR", "pt-rPT", "ru", "th", "tr", "vi",
+            "zh-rCN", "zh-rHK", "zh-rTW"
+        )
     }
 }
 

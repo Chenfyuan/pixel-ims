@@ -177,6 +177,7 @@
     <string name="config_backup_empty">No backups yet</string>
     <string name="config_backup_restore">Restore</string>
     <string name="config_backup_delete">Delete</string>
+    <string name="config_backup_delete_confirm">Are you sure you want to delete backup \"%1$s\"? This cannot be undone.</string>
     <string name="config_backup_saved">Backup saved</string>
     <string name="config_backup_restored">Backup restored</string>
     <string name="config_backup_mismatch_title">SIM info differs</string>
@@ -195,6 +196,7 @@
     <string name="diagnostics_finished">Diagnostics completed</string>
     <string name="diagnostics_empty">No diagnostics output yet</string>
     <string name="diagnostics_failed">Diagnostics failed. Please retry.</string>
+    <string name="diagnostics_exception_prefix">Diagnostics error: </string>
     <string name="diagnostics_no_available_sim">No available SIM for diagnostics.</string>
     <string name="diagnostics_all_sim_fallback">Using primary SIM for detailed checks: %1$s</string>
     <string name="restore_confirm_title">Confirm Restore</string>

@@ -79,7 +79,7 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
         private val NETWORK_EXIT_SERVICE_URLS = linkedMapOf(
             "Google" to "https://www.google.com/generate_204",
             "TikTok" to "https://www.tiktok.com/",
-            "联网验证" to "http://connectivitycheck.gstatic.cn/generate_204",
+            "Portal" to "http://connectivitycheck.gstatic.cn/generate_204",
         )
     }
 
@@ -592,7 +592,7 @@ class MainViewModel(private val application: Application) : AndroidViewModel(app
             val org = json.optString("org").ifBlank { json.optString("asn") }
             val googleReachable = isGeneralUrlReachable(NETWORK_EXIT_SERVICE_URLS.getValue("Google"))
             val tiktokReachable = isGeneralUrlReachable(NETWORK_EXIT_SERVICE_URLS.getValue("TikTok"))
-            val captiveReachable = isPortalUrlReachable(NETWORK_EXIT_SERVICE_URLS.getValue("联网验证"))
+            val captiveReachable = isPortalUrlReachable(NETWORK_EXIT_SERVICE_URLS.getValue("Portal"))
             NetworkExitStatus(
                 ip = ip.ifBlank { "N/A" },
                 ipVersion = if (ip.contains(":")) "IPv6" else "IPv4",
