@@ -132,3 +132,67 @@ SIGN_KEY_PASSWORD=***
 - UI 全面重构为 Material 3 规范
 - 合并为双 Tab 结构（工具 + 关于）
 - 重命名为 Pixel IMS
+
+## CI/CD
+
+### PR Check（`.github/workflows/pr-check.yml`）
+- 触发：PR 到 master/release + 手动
+- 步骤：单元测试 → lint → debug 构建 → 上传 lint 报告
+
+### Release Build（`.github/workflows/release.yml`）
+- 触发：push tag `v*` + 手动（workflow_dispatch）
+- 步骤：构建 release APK → 上传 artifact → tag 触发时自动创建 GitHub Release
+- 签名策略：优先使用 GitHub Secrets 配置的正式签名，未配置时 fallback 到 debug keystore
+- 需要的 Secrets（可选）：`SIGN_KEY_STORE_BASE64`、`SIGN_KEY_STORE_PASSWORD`、`SIGN_KEY_ALIAS`、`SIGN_KEY_PASSWORD`
+
+### 发版流程
+```bash
+# 1. 修改版本号
+# gradle/libs.versions.toml → app-version = "x.y.z"
+
+# 2. 提交并打 tag
+git commit -am "chore: bump version to vX.Y.Z"
+git tag vX.Y.Z
+git push origin master --tags
+
+# 3. CI 自动构建并创建 GitHub Release
+```
+
+## 代码质量规范
+
+### ProGuard（`app/proguard-rules.pro`）
+- 仅保留必要 keep 规则：Android 组件、Parcelable、Shizuku instrumentation
+- 不使用 `-ignorewarnings`
+- 不保留无用的 Serializable/BackupAgent/Preference 规则
+
+### Lint
+- 使用 `app/lint-baseline.xml` 固化历史问题
+- 新代码不应引入新的 lint 警告
+
+### 备份规则
+- `AndroidManifest.xml` 声明 `android:allowBackup="false"`
+- `data_extraction_rules.xml` 和 `backup_rules.xml` 排除所有 SharedPreferences
+- 原因：carrier config 状态不应跨设备迁移
+
+### 多语言
+- 支持 18 个语言（en + 17 个翻译），通过 `build.gradle.kts` 的 `localeFilters` 全部保留
+- 新增 UI 文案必须同时添加 `values/strings.xml`（英文）和 `values-zh-rCN/strings.xml`（中文）
+
+### 单元测试
+- 测试目录：`app/src/test/java/io/github/vvb2060/ims/model/`
+- `SupportRulesTest.kt` — 备份恢复/APN/MCC/MNC 验证逻辑
+- `VersionUtilsTest.kt` — 版本号解析、比较、国家码处理
+- 纯逻辑函数应放入可测试的 object（如 `VersionUtils`）而非 private fun
+
+### 工具函数
+- `VersionUtils`（`model/VersionUtils.kt`）：版本解析/比较、国家码 ISO 格式化、MCC 输入清理
+- `SupportRules`（`model/SupportModels.kt`）：MCC/MNC 规范化、备份校验、APN 校验
+
+## 已知的国家码修改功能
+
+项目已内置完整的 SIM 国家码修改功能（类似 Nrfr 项目），包括：
+- `Feature.COUNTRY_ISO`（STRING 类型 Feature）
+- `CountryIsoFeatureItem` composable（预设国家快捷选择 + MCC + 自定义 ISO 输入）
+- 预设：CN/HK/TW/US/JP/GB/KR/SG + 自定义
+- 底层 API：`CarrierConfigManager.KEY_SIM_COUNTRY_ISO_OVERRIDE_STRING`
+- TikTok 修复是其特例（写入随机 3 位数字 ISO）
