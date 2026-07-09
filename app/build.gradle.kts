@@ -84,7 +84,11 @@ android {
             vcsInfo.include = false
             proguardFiles("proguard-rules.pro")
             versionNameSuffix = ".r$gitVersionCode.$gitVersionName"
-            signingConfig = signingConfigs.getByName("sign")
+            signingConfig = if (signingConfigs.getByName("sign").storeFile != null) {
+                signingConfigs.getByName("sign")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
     compileOptions {
